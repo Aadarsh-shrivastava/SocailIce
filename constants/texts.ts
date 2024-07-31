@@ -1,0 +1,15 @@
+export const strings = {
+  APP_NAME: 'Socialize',
+  APP_MOTO: 'Make yourself a priority',
+  LIKES: 'Likes',
+  COMMENTS: 'Comments',
+  SHARE: 'Share',
+  SAVE: 'Save',
+  CAPTION: 'Caption',
+  TAGS: 'Tags',
+  FOLLOWERS: 'Followers',
+  FOLLOWING: 'Following',
+  FOLLOW: 'Follow',
+  MESSAGE: 'Message',
+  POSTS: 'Posts',
+};
