@@ -45,7 +45,11 @@ const GalleryCard = ({url}: GalleryCardProps) => {
 export default GalleryCard;
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    shadowOffset: {height: 10, width: 10},
+    shadowColor: 'black',
+    elevation: 18,
+  },
   image: {
     borderRadius: 20,
     margin: 5,

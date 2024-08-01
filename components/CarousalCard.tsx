@@ -28,7 +28,7 @@ const CarousalCard = ({post}: CarousalCardProps) => {
   useEffect(() => {
     Image.getSize(
       post.uri,
-      (originalWidth, originalHeight) => {
+      () => {
         const desiredWidth = screenWidth - 40;
         setDimensions({width: desiredWidth, height: 300});
       },
