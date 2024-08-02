@@ -2,11 +2,12 @@ import {StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import Gallery from '../../components/Gallery';
 import SearchBar from '../../components/SearchBar';
+import {Theme, useTheme} from '../../contexts/themeContext';
 
 const ExploreScreen = () => {
   const [images, setImages] = useState<any>([]);
   const [error, setError] = useState<string | null>(null);
-
+  const {theme, toggleTheme} = useTheme();
   useEffect(() => {
     const fetchImages = async () => {
       try {
@@ -37,14 +38,19 @@ const ExploreScreen = () => {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <View style={styles(theme).container}>
       {error ? (
-        <Text style={styles.errorText}>Error: {error}</Text>
+        <Text style={styles(theme).errorText}>Error: {error}</Text>
       ) : (
         images.length > 0 && (
-          <View>
-            <SearchBar />
-            <Gallery data={images} selectImage={() => {}} />
+          <View
+            style={{
+              width: '100%',
+              margin: theme.spacing.l,
+              backgroundColor: theme.colors.background,
+            }}>
+            {/* <SearchBar /> */}
+            <Gallery data={images} />
           </View>
         )
       )}
@@ -54,15 +60,17 @@ const ExploreScreen = () => {
 
 export default ExploreScreen;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  errorText: {
-    color: 'red',
-    fontSize: 18,
-    textAlign: 'center',
-  },
-});
+const styles = (theme: Theme) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: theme.colors.background,
+    },
+    errorText: {
+      color: 'red',
+      fontSize: 18,
+      textAlign: 'center',
+    },
+  });

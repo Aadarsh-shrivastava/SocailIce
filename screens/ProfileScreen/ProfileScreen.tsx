@@ -29,36 +29,9 @@ type ProfileScreenProps = NativeStackScreenProps<
 
 const ProfileScreen = ({navigation}: ProfileScreenProps) => {
   const {theme} = useTheme();
-  const [isModalActive, setIsModalActive] = useState<boolean>(false);
-  const [activePost, setActivePost] = useState<{url: string; caption: string}>({
-    url: '',
-    caption: '',
-  });
 
   return (
     <View style={{flex: 1}}>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={isModalActive}
-        onRequestClose={() => {
-          Alert.alert('Modal has been closed.');
-          setIsModalActive(false);
-        }}>
-        <TouchableWithoutFeedback onPress={() => setIsModalActive(false)}>
-          <View style={styles(theme).modalBackground}>
-            <TouchableWithoutFeedback>
-              <View>
-                <FullDisplayCard
-                  url={activePost.url}
-                  caption={activePost.caption}
-                />
-              </View>
-            </TouchableWithoutFeedback>
-          </View>
-        </TouchableWithoutFeedback>
-      </Modal>
-
       <ProfileHeader
         username={'Aadarsh07'}
         onPress={() => {
@@ -88,13 +61,7 @@ const ProfileScreen = ({navigation}: ProfileScreenProps) => {
           <ButtonRow />
         </View>
         <View style={{margin: theme.spacing.s}}>
-          <Gallery
-            data={galleryData}
-            selectImage={(item: {url: string; caption: string}) => {
-              setActivePost(item);
-              setIsModalActive(true);
-            }}
-          />
+          <Gallery data={galleryData} />
         </View>
       </ScrollView>
     </View>
